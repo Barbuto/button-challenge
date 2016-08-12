@@ -1,1 +1,54 @@
-// TODO: DEFINE YOUR BUTTON STYLES HERE
+@mixin transition {
+	-webkit-transition: all ease 0.8s;
+	-moz-transition: all ease 0.8s;
+	transition: all ease 0.8s;   
+}
+
+@mixin slide-background {
+	box-shadow: inset 100px 0 0 0 $active-color;
+    color: #fff;
+}
+@mixin disable-highlight {
+	-webkit-user-select: none;  
+  	-moz-user-select: none;     
+  	-ms-user-select: none;      
+  	user-select: none;   
+}
+@mixin button {
+	display: inline-block;
+	font-size: 1.2em; 
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 600; 
+  	text-align: center; 
+  	letter-spacing: 1px;
+  	padding: 8.5px 20px;
+    outline: none;
+    border: none;
+  	@include transition;
+  	@include disable-highlight;
+}
+
+$disable-color: #9E9E9E;
+$active-color: #4CB050;
+$hover-color: #3bc841;
+$click-color: #3b9f3f;
+
+.btn-holder {
+	button {
+		@include button;
+		@include slide-background;
+	}
+	button:hover {
+		box-shadow: inset 100px 0 0 0 $hover-color;
+	}
+	button:active {
+		box-shadow: inset 100px 0 0 0 $click-color;
+	}	
+	button:disabled {
+		background-color: $disable-color;  
+		cursor: default;
+		color: #ddd;
+		box-shadow: inset 0 0 0 0 $disable-color;
+	}	
+}
